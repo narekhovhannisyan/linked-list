@@ -1,9 +1,6 @@
 ﻿using System;
 
 namespace linked_list {
-	class Program {
-		static void Main (string[] args) { }
-	}
 
 	class Node {
 		public Node Next;
@@ -13,31 +10,26 @@ namespace linked_list {
 
 	class linkedList {
 
-		Node head, tail, temp = null;
+		Node head = null;
 
 		public int getFirst () {
 			if (head != null) return head.Value;
 			else throw new ArgumentNullException ("Head is null.");
 		}
 
-		public int getLast () {
-			if (tail != null) return tail.Value;
-			else throw new ArgumentNullException ("Tail is null.");
-		}
-
-		public void add (int value) {
-			if (head == tail) {
-				head.Value = tail.Value = value;
-				head.Next = tail.Prev;
-				head.Prev = tail.Next = null;
-			} else {
-				temp = head;
-				head.Value = value;
-				head.Next = temp;
+		public void insert (int value) {
+			Node insertion = new Node ();
+			insertion.Value = value;
+			insertion.Next = head;
+			if (head != null) {
+				head.Prev = insertion;
 			}
+			head = insertion;
+			insertion.Prev = null;
 		}
 
 		public Node search (int value) {
+			Node temp = new Node ();
 			temp = head;
 			while (temp != null && temp.Value != value) {
 				temp = temp.Next;
@@ -45,11 +37,19 @@ namespace linked_list {
 			return temp;
 		}
 
-		public void remove (int value) {
+		public void delete (int value) {
+			Node temp = new Node ();
 			temp = search (value);
 			if (temp.Prev != null) temp.Prev.Next = temp.Next;
 			else head = temp.Next;
 			if (temp.Next != null) temp.Next.Prev = temp.Prev;
+		}
+
+		public void log () {
+			while (head != null) {
+				Console.WriteLine (head.Value);
+				head = head.Next;
+			}
 		}
 	}
 }
