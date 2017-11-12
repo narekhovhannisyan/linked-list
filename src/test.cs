@@ -6,10 +6,7 @@ namespace linked_list {
       linkedList ll = new linkedList ();
       ll.insert (5);
       Console.WriteLine (ll.getFirst ());
-      ll.insert (3);
-      ll.insert (76);
-      ll.insert (12);
-      ll.delete (12);
+      ll.insert (3).insert (4).insert (12).delete (12);
       ll.log ();
     }
   }

@@ -17,7 +17,7 @@ namespace linked_list {
 			else throw new ArgumentNullException ("Head is null.");
 		}
 
-		public void insert (int value) {
+		public linkedList insert (int value) {
 			Node insertion = new Node ();
 			insertion.Value = value;
 			insertion.Next = head;
@@ -26,6 +26,7 @@ namespace linked_list {
 			}
 			head = insertion;
 			insertion.Prev = null;
+			return this;
 		}
 
 		public Node search (int value) {
@@ -37,12 +38,13 @@ namespace linked_list {
 			return temp;
 		}
 
-		public void delete (int value) {
+		public linkedList delete (int value) {
 			Node temp = new Node ();
 			temp = search (value);
 			if (temp.Prev != null) temp.Prev.Next = temp.Next;
 			else head = temp.Next;
 			if (temp.Next != null) temp.Next.Prev = temp.Prev;
+			return this;
 		}
 
 		public void log () {
